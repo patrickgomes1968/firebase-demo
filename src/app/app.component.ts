@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms/src/model';
 export class AppComponent {
   courses: AngularFireList<any>;
   courses$: Observable<any[]>;
+  title="Firebase App";
   // courses: any[];
   // subscription: Subscription;
 
@@ -35,9 +36,9 @@ export class AppComponent {
   }
 
   deleteCourse(course) {
-    console.log(course.$key);
+    console.log(course.key);
     // this.courses.remove(course);
-    this.db.object('/courses/' + course.$key).remove();
+    this.db.object('/courses/' + course.key).remove();
   }
 
   touchedAndInvalid(control: FormControl) {
