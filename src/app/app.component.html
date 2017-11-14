@@ -1,0 +1,32 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center"><h1>Welcome to {{title}}!</h1><img width="150" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="></div>
+<h2>Courses: </h2>
+
+<form class="form-signin" #f="ngForm" (ngSubmit)="addCourse(f.value)" novalidate>
+    <h2 class="form-signin-heading">New Course</h2>    
+    <label for="Title" class="sr-only">Title</label>
+    <input type="text" id="courseTitle" name="Title" ngModel #courseTitle="ngModel" class="form-control" placeholder="Title" required>
+    <div *ngIf="touchedAndInvalid(courseTitle)" class="alert alert-danger">Title id is required</div>
+    <label for="Duration" class="sr-only">Duration</label>
+    <input ngModel type="text" id="courseDuration" name="Duration"  #Duration ="ngModel" class="form-control" placeholder="Duration " required>
+    <div *ngIf="touchedAndInvalid(Duration)" class="alert alert-danger">Duration id is required</div>
+    <label for="Author" class="sr-only">Author</label>
+    <input type="text" id="courseAuthor" name="Author" ngModel #Author="ngModel" class="form-control" placeholder="Author" required >
+    <div *ngIf="(!Author.valid && Author.touched)" class="alert alert-danger">Author id is required</div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Add Course</button>
+</form>
+<!-- <input type="text" (keyup.enter)="add(course)" #course> -->
+<!-- <button class="btn btn-primary" (click)="ngOnDestroy()">Go Offline</button> -->
+<ul>
+<!-- {{courses$ | async | json}} -->
+  <li *ngFor="let course of courses$ | async">
+    <b>Key:</b> {{course.$key}}
+    <b>Title:</b> {{course.Title}}
+    <b>Duration:</b> {{course.Duration}}
+    <b>Author:</b> {{course.Author}}
+    <p><button (click)="deleteCourse(course)">Remove</button></p>
+
+    <hr> 
+  </li>
+</ul>
+
